@@ -3,7 +3,9 @@ const { env } = process
 // Testnet enviroment
 const testnet = {
   ENV: 'testnet',
-  HOST: `${env.TESTNET_PROT}://${env.TESTNET_HOST}:${env.TESTNET_PORT}/v2`,
+  PROT: env.TESTNET_PROT,
+  HOST: env.TESTNET_HOST,
+  PORT: env.TESTNET_PORT,
   WALLET: {
     NAME: env.TESTNET_WALLET_NAME,
     MNEMONIC_SENTENCE: env.TESTNET_WALLET_MNEMONIC_SENTENCE,
@@ -15,7 +17,9 @@ const testnet = {
 // Mainnet enviroment
 const mainnet = {
   ENV: 'mainnet',
-  HOST: `${env.MAINNET_PROT}://${env.MAINNET_HOST}:${env.MAINNET_PORT}/v2`,
+  PROT: env.MAINNET_PROT,
+  HOST: env.MAINNET_HOST,
+  PORT: env.MAINNET_PORT,
   WALLET: {
     NAME: env.MAINNET_WALLET_NAME,
     MNEMONIC_SENTENCE: env.MAINNET_WALLET_MNEMONIC_SENTENCE,
