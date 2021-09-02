@@ -1,16 +1,16 @@
-export const cla = ((args) =>
-  ['--file'].reduce((object, arg) => {
-    const index = args.indexOf(arg)
-
-    if (index < 0) return object
-
-    switch (arg) {
-      case '--file':
-        return { ...object, [arg]: args[index + 1] }
-      default:
-        throw new Error(`Argument '${arg}' unhandled in readArguments!`)
-    }
-  }, {}))(process.argv.slice(2))
+// export const args = ((args) =>
+//   ['--file'].reduce((object, arg) => {
+//     const index = args.indexOf(arg)
+//
+//     if (index < 0) return object
+//
+//     switch (arg) {
+//       case '--file':
+//         return { ...object, [arg]: args[index + 1] }
+//       default:
+//         throw new Error(`Argument '${arg}' unhandled in readArguments!`)
+//     }
+//   }, {}))(process.argv.slice(2))
 
 import promptMenu from '../utils/prompt/menu'
 

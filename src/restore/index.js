@@ -1,5 +1,6 @@
 import debug from 'debug'
 
+import args from '../utils/args'
 import prompt from '../utils/prompt'
 import promptMenu from '../utils/prompt/menu'
 import encrypt from '../utils/encrypt'
@@ -13,7 +14,7 @@ import denoiser from '../utils/denoiser'
 import * as cardano from '../utils/cardano'
 
 import {
-  cla,
+  // args,
   askForWallet,
   askForOrigin,
   askForNewWallet,
@@ -28,8 +29,6 @@ const log = debug('restore')
 
 ;(async () => {
   try {
-    const args = cla
-
     //
     // Load an existing wallet living in the node or create/restore a new one
     // from a mnemonic sentence
@@ -60,7 +59,7 @@ const log = debug('restore')
     // Decrypt file
     //
     const [index, noise, transaction_id] = await decryptFile(
-      args['--file'],
+      args('--file'),
       await prompt('Enter decryption password: ', { muted: true }),
     )
 
