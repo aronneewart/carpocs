@@ -49,7 +49,10 @@ const log = debug('store')
                               await prompt(
                                 'Recovery phrase (space separated): ',
                               ),
-                              await prompt('Passphrase (at least 10 charts): '),
+                              await prompt(
+                                'Passphrase (at least 10 charts): ',
+                                { muted: true },
+                              ),
                             ]
                           }
                           case 1: {
@@ -126,7 +129,7 @@ const log = debug('store')
         default:
           return [
             (await cardano.ListWallets())[wallet_option - 1],
-            await prompt('Passphrase: '),
+            await prompt('Passphrase: ', { muted: true }),
           ]
       }
     })(await askForWallet(await cardano.ListWallets()))
@@ -155,6 +158,7 @@ const log = debug('store')
 
     //
     // Encrypt and obfuscate the recovery phrase
+    // TODO validate recovery phrase with bip39
     //
     let [data, index, noise] = noiser(
       shuffle(
@@ -217,7 +221,7 @@ const log = debug('store')
 
     const fileName = await encryptFile(
       [index, noise, transaction.id],
-      await prompt('Please enter file encryption password: '),
+      await prompt('Please enter file encryption password: ', { muted: true }),
     )
 
     finalMessage(fileName, transaction.id)

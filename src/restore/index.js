@@ -61,7 +61,7 @@ const log = debug('restore')
     //
     const [index, noise, transaction_id] = await decryptFile(
       args['--file'],
-      await prompt('Enter decryption password: '),
+      await prompt('Enter decryption password: ', { muted: true }),
     )
 
     //
