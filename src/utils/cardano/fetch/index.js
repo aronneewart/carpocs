@@ -3,9 +3,10 @@ import https from 'https'
 import fs from 'fs'
 import debug from 'debug'
 
+import args from '../../../utils/args'
 import config from '../../../config'
 
-const { ENV, HOST, CLIENT, CA } = config
+const { ENV, PROT, HOST, PORT, CLIENT, CA } = config
 
 const log = debug('utils:cardano:fetch')
 
@@ -21,16 +22,19 @@ const cardanoFetch = async (endpoint, options = {}) => {
       }),
     }
 
-  //  log(`${HOST}/${endpoint.replace(/^\/*/, '')}`)
-  // log(options)
-
-  let res = await fetch(`${HOST}/${endpoint.replace(/^\/*/, '')}`, options)
+  let res = await fetch(
+    `${PROT}://${HOST}:${args('--port') || PORT}/v2/${endpoint.replace(
+      /^\/*/,
+      '',
+    )}`,
+    options,
+  )
 
   try {
     res = await res.json()
   } catch (e) {}
 
-  if (res.code) throw res // new Error(`${res.code} | ${res.message}`)
+  if (res.code) throw res
   return await res
 }
 
