@@ -1,2 +1,3 @@
-# carpocs
-Cardano Recovery Phrase On-Chain Storage 
+# CaRPOCS
+
+Cardano Recovery Phrase On-Chain Storage

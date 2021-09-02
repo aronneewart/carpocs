@@ -1,0 +1,56 @@
+{
+  "name": "recovery-phrase-on-chain-storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint '**/*.js'",
+    "lint:fix": "npx eslint --fix '**/*.js'",
+    "mainnet:store": "eval $(cat .env) NODE_ENV=mainnet node -r esm ./src/store/index.js",
+    "mainnet:restore": "eval $(cat .env) NODE_ENV=mainnet node -r esm ./src/restore/index.js",
+    "testnet:store": "eval $(cat .env) NODE_ENV=testnet DEBUG=* node -r esm ./src/store/index.js",
+    "testnet:restore": "eval $(cat .env) NODE_ENV=testnet DEBUG=* node -r esm ./src/restore/index.js",
+    "test:testnet:utils": "eval $(cat .env) NODE_ENV=testnet DEBUG=* node -r esm ./src/test/utils/index.js",
+    "test:testnet:cardano": "eval $(cat .env) NODE_ENV=testnet DEBUG=* node -r esm ./src/test/cardano/index.js",
+    "test:mainnet:utils": "eval $(cat .env) NODE_ENV=mainnet DEBUG=* node -r esm ./src/test/utils/index.js",
+    "test:mainnet:cardano": "eval $(cat .env) NODE_ENV=mainnet DEBUG=* node -r esm ./src/test/cardano/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aronneewart/recovery-phrase-on-chain-storage.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aronneewart/recovery-phrase-on-chain-storage/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "npm run lint:fix",
+      "git add"
+    ]
+  },
+  "homepage": "https://github.com/aronneewart/recovery-phrase-on-chain-storage#readme",
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "bip39": "^3.0.4",
+    "debug": "^4.3.1",
+    "esm": "^3.2.25",
+    "node-fetch": "^2.6.1"
+  }
+}
